@@ -1,10 +1,11 @@
 class List {
     constructor(paramX, paramY) {
-        this._mass = ['A', 'B', 'C', 'D','E','F','G','H','I','K','L','M','N','O','P'];
+        this._mass = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P'];
         this._cals = paramX;
         this._rows = paramY;
         this._cells = [];
         this._tdCells = [];
+        this._tdHeaderCells = [];
         this._activeLine = undefined;
         for (let i = 0; i < paramX; i++) {
             let list = [];
@@ -42,8 +43,12 @@ class List {
                 let td = this._cells[i][j].render();
 
                 td.addEventListener('click', () => {
-                   this.returnIndex(i,j);
-                   td.innerHTML = this._activeLine;
+                    this.clearDataCells();
+                    this.clearHeaderColumns();
+                    //this.getLetterNumberIndex(i, j);
+                    //TODO active input
+
+                    td.innerHTML = this._activeLine;
 
                 });
 
@@ -63,7 +68,6 @@ class List {
                 if (activeCell !== this._cells[i][k] && this._cells[i][k].getInput() !== undefined) {
                     this._cells[i][k].removeInput();
                 }
-
             }
         }
     }
@@ -72,38 +76,37 @@ class List {
         let trColumn = document.createElement('tr');
         let td = document.createElement('td');
         trColumn.appendChild(td);
-
         for (let j = 0; j < this._cals; j++) {
             let td = document.createElement('td');
+            this._tdHeaderCells.push(td);
             td.addEventListener('click', () => {
+                this.clearHeaderColumns();
+                //TODO clear data cels
+                this.clearDataCells();
                 for (let i = 0; i < this._cals; i++) {
                     for (let k = 0; k < this._rows; k++) {
                         if (j === k) {
-                            //console.log(this._tdCells[i][k]);
                             this._tdCells[i][k].classList.add('active');
-                        }
-                        else{
-                            this.clearSelection(i,k);
-
+                            this.setColorToColumn(td);
                         }
                     }
                 }
+
             });
             td.innerHTML = this.getLetterIndex(j);
             trColumn.appendChild(td);
         }
         table.appendChild(trColumn);
     }
+
     renderLeftColumns(i, tr) {
         let td = document.createElement('td');
         td.innerHTML = `${i + 1}`;
         tr.appendChild(td)
-
     }
 
-
     getLetterIndex(index) {
-        index = index +1;
+        index = index + 1;
         let increment = Math.floor(index / this._mass.length)
         let letter = [];
         let startSymbol;
@@ -127,30 +130,45 @@ class List {
         }
         return `${letter}`
     }
-    clearSelection(i, k){
-        this._tdCells[i][k].classList.remove('active');
-    }
-    returnIndex(number,factLetter){
-        factLetter =factLetter+1;
-        let letter = this._mass[factLetter-1];
-        let increment = Math.floor(factLetter / this._mass.length)
-        if(factLetter>this._mass.length) {
-            let firstLetter = this._mass[factLetter - this._mass.length - 1]
-            let saldo = factLetter - this._mass.length;
+
+    getLetterNumberIndex(rowPosition, columnPosition) {
+        columnPosition = columnPosition + 1;
+        let letter = this._mass[columnPosition - 1];
+        let increment = Math.floor(columnPosition / this._mass.length)
+        if (columnPosition > this._mass.length) {
+            let firstLetter = this._mass[columnPosition - this._mass.length - 1]
+            let saldo = columnPosition - this._mass.length;
             let secondLetter = this._mass[saldo];
             letter = firstLetter + secondLetter;
-            if (factLetter  % this._mass.length === 0 && increment > 1) {
+            if (columnPosition % this._mass.length === 0 && increment > 1) {
                 firstLetter = this._mass[increment - 2]
                 letter = firstLetter + this._mass[this._mass.length - 2];
             }
-            if (factLetter > this._mass.length * increment) {
-                saldo = factLetter - this._mass.length * increment;
+            if (columnPosition > this._mass.length * increment) {
+                saldo = columnPosition - this._mass.length * increment;
                 firstLetter = this._mass[increment - 1];
-                letter = firstLetter + this._mass[saldo-1];
+                letter = firstLetter + this._mass[saldo - 1];
             }
         }
-        let factNumber = number+1;
-        this._activeLine = `${letter}`+`${factNumber}`;
+        let factNumber = rowPosition + 1;
+        return  `${letter}${factNumber}`;
     }
 
+    setColorToColumn(td) {
+        td.classList.add('active');
+    }
+
+    clearHeaderColumns() {
+        for (let i = 0; i < this._tdHeaderCells.length; i++) {
+            this._tdHeaderCells[i].classList.remove('active');
+        }
+    }
+
+    clearDataCells() {
+        for (let i = 0; i < this._cals; i++) {
+            for (let k = 0; k < this._rows; k++) {
+                this._tdCells[i][k].classList.remove('active');
+            }
+        }
+    }
 }
