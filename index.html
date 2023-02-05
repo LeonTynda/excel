@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
+
     .tooltip {
         position: relative;
         display: table;
@@ -24,8 +25,36 @@
     .tooltip:hover .tooltiptext {
         visibility: visible;
     }
+
     .active {
-       background-color:  red;
+        background-color: rgb(25, 114, 229, 0.1) ;
+        border-right: 3px solid rgb(25, 114, 229);;
+        border-left: 3px solid rgb(25, 114, 229);;
+
+    }
+
+    .verticalStyle {
+        border-style: solid;
+        border-width: 3px 3px 3px 3px;
+        padding: 3px;
+
+    }
+
+
+
+    .colorOfCell {
+        background-color: rgb(25, 114, 229);
+    }
+
+    .input {
+        font-weight: normal;
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+        padding: 5px;
+        min-width: max-content;
+        cursor: text;
+
     }
 
 </style>
@@ -44,7 +73,7 @@
         listContainer.add(4, 4);
         listContainer.add(30, 30);
         let list = listContainer.getList(1);
-        let cell = list.getCell(1,2);
+        let cell = list.getCell(1, 2);
 
 
         console.log(excel);
@@ -56,9 +85,10 @@
         });
     </script>
 </head>
-<body  style="text-align:left;">
 
-
+<body style="text-align:left;">
+<input type="text" id="X">
+<input type="text" id="Y">
 
 <div class="tooltip">
     <div id='show'>
@@ -70,11 +100,11 @@
 
     <div id='data'>
     </div>
-    <span class="tooltiptext" >ВЫБЕРИТЕ ЛИСТ</span>
+    <span class="tooltiptext">ВЫБЕРИТЕ ЛИСТ</span>
 
 </div>
 
-<button class="e" id = '11111' onclick="excel.showMaster()">ПОСМОТРЕТЬ ФОТО ГУРУ ЖИТОМИРСКОГО</button>
-<img src="vitalya.jpg" id ="vitalya"  style="display: none">
+<button class="e" id='11111' onclick="excel.showMaster()">ПОСМОТРЕТЬ ФОТО ГУРУ ЖИТОМИРСКОГО</button>
+<img src="vitalya.jpg" id="vitalya" style="display: none">
 </body>
 </html>

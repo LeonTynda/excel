@@ -11,7 +11,7 @@ class List {
             let list = [];
             for (let j = 0; j < paramY; j++) {
                 let cell = new Cell(this);
-                cell.setValue(`${i},${j}`)
+                //cell.setValue(`${i},${j}`)
                 list.push(cell);
             }
             this._cells.push(list);
@@ -21,14 +21,10 @@ class List {
 
     getCells() {
         return this._cells;
-
     }
-
     getCell(x, y) {
         return this._cells[x - 1][y - 1];
-
     }
-
     render() {
         let table = document.createElement('table');
         for (let i = 0; i < this._rows; i++) {
@@ -39,25 +35,24 @@ class List {
             }
             this.renderLeftColumns(i, tr);
             for (let j = 0; j < this._cals; j++) {
-
                 let td = this._cells[i][j].render();
-
+                td.innerHTML =''
                 td.addEventListener('click', () => {
                     this.clearDataCells();
-                    this.clearHeaderColumns();
+                    this.clearHeaderColumns('verticalStyle');
+                    td.classList.add('verticalStyle');
+                    td.classList.add('colorOfCell')
                     //this.getLetterNumberIndex(i, j);
-                    //TODO active input
-
-                    td.innerHTML = this._activeLine;
-
+                    //TODO active input to double click
+                    //TODO obodok active
+                    //td.innerHTML = this._activeLine;
                 });
-
-
                 tr.appendChild(td);
                 tdList.push(td);
             }
             table.appendChild(tr);
             this._tdCells.push(tdList);
+
         }
         return table;
     }
@@ -81,13 +76,13 @@ class List {
             this._tdHeaderCells.push(td);
             td.addEventListener('click', () => {
                 this.clearHeaderColumns();
-                //TODO clear data cels
                 this.clearDataCells();
                 for (let i = 0; i < this._cals; i++) {
                     for (let k = 0; k < this._rows; k++) {
                         if (j === k) {
                             this._tdCells[i][k].classList.add('active');
                             this.setColorToColumn(td);
+
                         }
                     }
                 }
@@ -168,7 +163,13 @@ class List {
         for (let i = 0; i < this._cals; i++) {
             for (let k = 0; k < this._rows; k++) {
                 this._tdCells[i][k].classList.remove('active');
+                this._tdCells[i][k].classList.remove('verticalStyle');
+
+                this._tdCells[i][k].classList.remove('colorOfCell')
+
             }
         }
     }
+
+
 }
