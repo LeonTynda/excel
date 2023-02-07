@@ -28,13 +28,10 @@ class Cell {
 
     render() {
         let td = document.createElement('td');
-
         if (this._value !== undefined) {
             td.innerHTML = this._value;
         }
         td.addEventListener('click', () => {
-
-
             this._list.removeInputs(this);
             this.showInput(td);
         });
@@ -55,62 +52,59 @@ class Cell {
         if (this._value !== undefined) {
             input.value = this._value;
         }
-        let end = input.value.length;
-        let endTd  = input.value;
-        console.log(end,endTd)
-
         td.appendChild(input);
         this._input = input;
-        //TODO input focus
-        //TODO roztyanut imput
-        input.addEventListener("dblclick", (e) => {
-            let end = input.value.length;
-            input.setSelectionRange(this._masxy[0],this._masxy[1] );
-            input.focus();
-            input.ariaPosInSet
-            this.cursorPositions(e)
-            console.log(1111111111111111)
-
-        })
-        input.addEventListener("keydown", (e) => {
-
-            //let end = input.value.length;
-            //input.setSelectionRange(end,end);
-            //input.focus();
-            if (e.key === 'Enter') {
-                this._value = input.value;
-                this.removeInput();
-                td.classList.remove('verticalStyle');
-
-            }
-        });
+        this.inputOnClick(input);
+        this.inputKeydown(input, td);
     }
-    getInput(){
+
+    getInput() {
         return this._input;
     }
-    removeInput(){
 
-        if(this._value === undefined){
+    removeInput() {
+
+        if (this._value === undefined) {
             this._td.innerHTML = '';
-        }else {
+        } else {
             this._td.innerHTML = this._value;
         }
         this._input = undefined;
     }
-    getActiveCell(){
+
+    getActiveCell() {
         return this._activeCell;
     }
-    cursorPositions(e){
 
+    cursorPositions(e) {
+        this._masxy = [];
         let X = document.getElementById('X');
         let Y = document.getElementById('Y');
-            X.value = e.pageX;
-            Y.value = e.pageY;
-            this._masxy.push(X.value);
-            this._masxy.push(Y.value);
-            console.log(this._masxy)
+        X.value = e.pageX;
+        Y.value = e.pageY;
+        this._masxy.push(X.value, Y.value);
+        this._masxy.push();
     }
-    getPositionOfCursor(){
+
+    getPositionOfCursor() {
         addEventListener('mousemove', this.cursorPositions, false);
+    }
+
+    inputOnClick(input) {
+        input.addEventListener("dblclick", (e) => {
+            input.setSelectionRange(this._masxy[0], this._masxy[1]);
+            input.focus();
+            this.cursorPositions(e);
+        })
+    }
+
+    inputKeydown(input, td) {
+        input.addEventListener("keydown", (e) => {
+            if (e.key === 'Enter') {
+                this._value = input.value;
+                this.removeInput();
+                td.classList.remove('verticalStyle');
+            }
+        });
     }
 }
