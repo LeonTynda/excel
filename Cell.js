@@ -40,22 +40,15 @@ class Cell {
     }
 
     showInput(td) {
-        this.getPositionOfCursor()
         if (this._input !== undefined) {
             return;
         }
+        this.getPositionOfCursor();
         td.innerHTML = '';
-        let input = document.createElement('input');
-        input.contentEditable = 'true';
-        input.classList.add('input')
-        td.classList.add('input')
-        if (this._value !== undefined) {
-            input.value = this._value;
-        }
-        td.appendChild(input);
-        this._input = input;
-        this.inputOnClick(input);
-        this.inputKeydown(input, td);
+        let factInput = this.createInput(td);
+        td.classList.add('input');
+        td.appendChild(factInput);
+        this._input = factInput;
     }
 
     getInput() {
@@ -63,7 +56,6 @@ class Cell {
     }
 
     removeInput() {
-
         if (this._value === undefined) {
             this._td.innerHTML = '';
         } else {
@@ -95,10 +87,10 @@ class Cell {
             input.setSelectionRange(this._masxy[0], this._masxy[1]);
             input.focus();
             this.cursorPositions(e);
-        })
+        });
     }
 
-    inputKeydown(input, td) {
+    inputOnKeydown(input, td) {
         input.addEventListener("keydown", (e) => {
             if (e.key === 'Enter') {
                 this._value = input.value;
@@ -106,5 +98,15 @@ class Cell {
                 td.classList.remove('verticalStyle');
             }
         });
+    }
+    createInput(td){
+        let input = document.createElement('input');
+        input.classList.add('input');
+        if (this._value !== undefined) {
+            input.value = this._value;
+        }
+        this.inputOnClick( input);
+        this.inputOnKeydown( input, td);
+        return input;
     }
 }
