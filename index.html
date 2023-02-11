@@ -1,71 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-
-    .tooltip {
-        position: relative;
-        display: table;
-        border-bottom: 1px dotted black;
-    }
-
-    .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 120px;
-        background-color: black;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px 0;
-
-        /* Position the tooltip */
-        position: absolute;
-        z-index: 1;
-    }
-
-    .tooltip:hover .tooltiptext {
-        visibility: visible;
-    }
-
-    .active {
-        background-color: rgb(25, 114, 229, 0.1) ;
-        border-right: 3px solid rgb(25, 114, 229);;
-        border-left: 3px solid rgb(25, 114, 229);;
-
-    }
-
-    .verticalStyle {
-        border-style: solid;
-        border-width: 3px 3px 3px 3px;
-        padding: 3px;
-
-    }
-
-
-
-    .colorOfCell {
-        background-color: rgb(25, 114, 229);
-    }
-
-    .input {
-        font-weight: normal;
-        box-sizing: border-box;
-        height: 100%;
-        width: 100%;
-        padding: 5px;
-        min-width: max-content;
-        cursor: text;
-
-    }
-
 </style>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="Doc.js"></script>
-    <script src="List.js"></script>
-    <script src="ListContainer.js"></script>
-    <script src="Cell.js"></script>
-    <link href="blank.css" rel="stylesheet" type="text/css">
+    <script src="ClassesTable/TableClasses/Doc.js"></script>
+    <script src="ClassesTable/TableClasses/List.js"></script>
+    <script src="ClassesTable/TableClasses/ListContainer.js"></script>
+    <script src="ClassesTable/TableClasses/Cell.js"></script>
+    <link href="ClassesTable/CSSTableStyles/blank.css" rel="stylesheet" type="text/css">
     <script>
 
         let excel = new Excel(3, 6, 6);
@@ -85,11 +29,9 @@
         });
     </script>
 </head>
-
 <body style="text-align:left;">
 <input type="text" id="X">
 <input type="text" id="Y">
-
 <div class="tooltip">
     <div id='show'>
     </div>
@@ -103,8 +45,7 @@
     <span class="tooltiptext">ВЫБЕРИТЕ ЛИСТ</span>
 
 </div>
-
 <button class="e" id='11111' onclick="excel.showMaster()">ПОСМОТРЕТЬ ФОТО ГУРУ ЖИТОМИРСКОГО</button>
-<img src="vitalya.jpg" id="vitalya" style="display: none">
+<img src="ClassesTable/CSSTableStyles/vitalya.jpg" id="vitalya" style="display: none">
 </body>
 </html>
