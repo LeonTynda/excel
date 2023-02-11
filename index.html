@@ -5,21 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="ClassesTable/TableClasses/Doc.js"></script>
-    <script src="ClassesTable/TableClasses/List.js"></script>
-    <script src="ClassesTable/TableClasses/ListContainer.js"></script>
-    <script src="ClassesTable/TableClasses/Cell.js"></script>
-    <link href="ClassesTable/CSSTableStyles/blank.css" rel="stylesheet" type="text/css">
+    <script src="src/js/Doc.js"></script>
+    <script src="src/js/List.js"></script>
+    <script src="src/js/ListContainer.js"></script>
+    <script src="src/js/Cell.js"></script>
+    <link href="src/css/main.css" rel="stylesheet" type="text/css">
+    <link href="src/css/input.css" rel="stylesheet" type="text/css">
+    <link href="src/css/table.css" rel="stylesheet" type="text/css">
+    <link href="src/css/tooltip.css" rel="stylesheet" type="text/css">
     <script>
-
         let excel = new Excel(3, 6, 6);
         let listContainer = excel.getListContainer();
         listContainer.add(4, 4);
         listContainer.add(30, 30);
         let list = listContainer.getList(1);
         let cell = list.getCell(1, 2);
-
-
         console.log(excel);
         console.log(cell);
         window.addEventListener('DOMContentLoaded', () => {
@@ -46,6 +46,6 @@
 
 </div>
 <button class="e" id='11111' onclick="excel.showMaster()">ПОСМОТРЕТЬ ФОТО ГУРУ ЖИТОМИРСКОГО</button>
-<img src="ClassesTable/CSSTableStyles/vitalya.jpg" id="vitalya" style="display: none">
+<img src="src/images/vitalya.jpg" id="vitalya" style="display: none">
 </body>
 </html>
