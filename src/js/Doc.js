@@ -1,6 +1,6 @@
 class Excel {
     constructor(startListAmount, paramX, paramY) {
-
+        this._menu = new Menu();
         this._listContainer = new ListContainer();
         for (let i = 0; i < startListAmount; i++) {
             this._listContainer.add(paramX, paramY);
@@ -14,6 +14,8 @@ class Excel {
     }
 
     render(id) {
+        this._menu.render();
+        console.log( this._menu.render());
         let tables = [];
         let file = document.getElementById(id);
         for (let i = 0; i < this._listContainer.getCount(); i++) {

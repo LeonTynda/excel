@@ -1,0 +1,16 @@
+#menu{
+    display: flex;
+    border: 2px solid red;
+
+
+}
+#menu div {
+    margin-right: 10px;
+
+}
+#menu div:nth-child(2) {
+
+}
+#menu div:nth-child(1) {
+
+}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
+
 </style>
 <head>
     <meta charset="UTF-8">
@@ -9,12 +10,26 @@
     <script src="src/js/List.js"></script>
     <script src="src/js/ListContainer.js"></script>
     <script src="src/js/Cell.js"></script>
+    <script src="src/js/menu/Menu.js"></script>
+    <script src="src/js/menu/commands/MenuCommand.js"></script>
+    <script src="src/js/menu/commands/MenuSubCommand.js"></script>
+    <script src="src/js/menu/commands/file/FileMenu.js"></script>
+    <script src="src/js/menu/commands/edit/EditMenu.js"></script>
+    <script src="src/js/menu/commands/window/WindowMenu.js"></script>
+    <script src="src/js/menu/commands/window/WindowReload.js"></script>
+    <script src="src/js/menu/commands/window/WindowClose.js"></script>
+    <script src="src/js/menu/commands/edit/EditCopyCommand.js"></script>
+    <script src="src/js/menu/commands/file/FileAddCommand.js"></script>
+    <script src="src/js/menu/commands/edit/EditPasteCommand.js"></script>
+    <script src="src/js/menu/commands/file/FileSaveCommand.js"></script>
     <link href="src/css/main.css" rel="stylesheet" type="text/css">
     <link href="src/css/input.css" rel="stylesheet" type="text/css">
     <link href="src/css/table.css" rel="stylesheet" type="text/css">
     <link href="src/css/tooltip.css" rel="stylesheet" type="text/css">
+    <link href="src/css/menu.css" rel="stylesheet" type="text/css">
     <script>
         let excel = new Excel(3, 6, 6);
+
         let listContainer = excel.getListContainer();
         listContainer.add(4, 4);
         listContainer.add(30, 30);
@@ -30,8 +45,9 @@
     </script>
 </head>
 <body style="text-align:left;">
-<input type="text" id="X">
-<input type="text" id="Y">
+<div id="menu">
+</div>
+
 <div class="tooltip">
     <div id='show'>
     </div>
@@ -47,5 +63,7 @@
 </div>
 <button class="e" id='11111' onclick="excel.showMaster()">ПОСМОТРЕТЬ ФОТО ГУРУ ЖИТОМИРСКОГО</button>
 <img src="src/images/vitalya.jpg" id="vitalya" style="display: none">
+<input type="text"  id="X" visible="hidden">
+<input type="text" id="Y"  visible="hidden">
 </body>
 </html>

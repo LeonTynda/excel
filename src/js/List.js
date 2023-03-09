@@ -43,9 +43,6 @@ class List {
                     td.classList.add('verticalStyle');
                     td.classList.add('colorOfCell')
                     //this.getLetterNumberIndex(i, j);
-                    //TODO active input to double click
-                    //TODO obodok active
-                    //td.innerHTML = this._activeLine;
                 });
                 tr.appendChild(td);
                 tdList.push(td);

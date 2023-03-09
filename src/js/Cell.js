@@ -72,8 +72,8 @@ class Cell {
         this._masxy = [];
         let X = document.getElementById('X');
         let Y = document.getElementById('Y');
-        X.value = e.pageX;
-        Y.value = e.pageY;
+        X.style.display ='none'
+        Y.style.display ='none'
         this._masxy.push(X.value, Y.value);
         this._masxy.push();
     }
