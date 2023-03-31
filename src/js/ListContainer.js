@@ -1,11 +1,17 @@
 class ListContainer {
     constructor() {
         this._lists = [];
-        this._actitiveList = 4;
+        this._actitiveListIndex = 0;
         this._activeButton = 0;
+        this._listEvent = undefined;
+
+        document.addEventListener('listSelected',(event)=>{
+            console.log(12345678,event.detail.listEvent)
+        })
+
     }
-    add(x, y) {
-        let list = new List(x, y);
+    add(x, y,name) {
+        let list = new List(x, y,name);
         this._lists.push(list);
         return this._lists;
     }
@@ -23,15 +29,18 @@ class ListContainer {
     getCount(){
         return this._lists.length;
     }
-    getActiveList(){
-        return this._actitiveList;
+    getActiveListIndex(){
+        return this._actitiveListIndex;
     }
-    setActiveList(value){
-        this._actitiveList = value;
+    setActiveListIndex(value){
+
+        this._actitiveListIndex = value;
     }
     setActiveButton(value){
         this._activeButton = value;
     }
 
-
+    getActiveList(){
+        return this.getList(this._actitiveListIndex+1)
+    }
 }

@@ -4,6 +4,7 @@ class WindowMenu extends MenuCommand{
         this._name = 'WindowMenu';
         this._items.push(new WindowReload());
         this._items.push(new WindowClose());
+
     }
 
 }
