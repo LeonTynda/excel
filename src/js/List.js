@@ -1,12 +1,21 @@
 class List {
-    constructor(paramX, paramY) {
+    constructor(paramX, paramY,name) {
         this._mass = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P'];
         this._cals = paramX;
         this._rows = paramY;
         this._cells = [];
         this._tdCells = [];
         this._tdHeaderCells = [];
-        this._activeLine = undefined;
+        this._name = name;
+        this._activeCell = undefined;
+        document.addEventListener('cellSelected',(event)=>{
+            console.log(44444444,this._name)
+            if(event.detail.cell._list._name === this._name){
+                this._activeCell = event.detail.cell;
+                console.log(event.detail.cell,99999,this,this._activeCell)
+            }
+        });
+
         for (let i = 0; i < paramX; i++) {
             let list = [];
             for (let j = 0; j < paramY; j++) {
@@ -16,9 +25,7 @@ class List {
             }
             this._cells.push(list);
         }
-
     }
-
     getCells() {
         return this._cells;
     }
@@ -36,6 +43,7 @@ class List {
             this.renderLeftColumns(i, tr);
             for (let j = 0; j < this._cals; j++) {
                 let td = this._cells[i][j].render();
+                td.classList.add(new Cell().getFont())
                 td.innerHTML =''
                 td.addEventListener('click', () => {
                     this.clearDataCells();
@@ -43,9 +51,6 @@ class List {
                     td.classList.add('verticalStyle');
                     td.classList.add('colorOfCell')
                     //this.getLetterNumberIndex(i, j);
-                    //TODO active input to double click
-                    //TODO obodok active
-                    //td.innerHTML = this._activeLine;
                 });
                 tr.appendChild(td);
                 tdList.push(td);
@@ -170,6 +175,8 @@ class List {
             }
         }
     }
-
+    getActiveCell(){
+        return this._activeCell;
+    }
 
 }

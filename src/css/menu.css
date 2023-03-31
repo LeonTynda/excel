@@ -1,0 +1,24 @@
+#menu{
+    display: flex;
+    border: 2px solid red;
+}
+#menu div {
+    margin-right: 10px;
+
+}
+#menu div:nth-child(2) {
+ //background-color: yellow;
+
+}
+#menu div:nth-child(1) {
+
+}
+#instruments{
+    display: table;
+    margin-top: 0px;
+    margin-left: 0px;
+    color:  red;
+    width: 1000px;
+    height: 15px;
+    border: 5px solid yellow;
+}

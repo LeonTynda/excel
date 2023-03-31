@@ -5,8 +5,8 @@ class Cell {
         this._input = undefined;
         this._list = list;
         this._td = undefined;
-        this._activeCell = undefined;
         this._masxy = [];
+         this._font = undefined
     }
 
     setValue(value) {
@@ -32,8 +32,15 @@ class Cell {
             td.innerHTML = this._value;
         }
         td.addEventListener('click', () => {
+            td.classList.add(this._font);
             this._list.removeInputs(this);
             this.showInput(td);
+            let cellEvent = new CustomEvent("cellSelected",{
+                detail:{
+                    cell: this
+                }
+            });
+            document.dispatchEvent(cellEvent);
         });
         this._td = td;
         return td;
@@ -46,7 +53,9 @@ class Cell {
         this.getPositionOfCursor();
         td.innerHTML = '';
         let factInput = this.createInput(td);
+        factInput.classList.add(this._font);
         td.classList.add('input');
+        td.classList.add(this._font);
         td.appendChild(factInput);
         this._input = factInput;
     }
@@ -60,22 +69,19 @@ class Cell {
             this._td.innerHTML = '';
         } else {
             this._td.innerHTML = this._value;
+            this._td.classList.add(this._font);
         }
         this._input = undefined;
-    }
-
-    getActiveCell() {
-        return this._activeCell;
     }
 
     cursorPositions(e) {
         this._masxy = [];
         let X = document.getElementById('X');
         let Y = document.getElementById('Y');
-        X.value = e.pageX;
-        Y.value = e.pageY;
+        X.style.display ='block'
+        Y.style.display ='block'
         this._masxy.push(X.value, Y.value);
-        this._masxy.push();
+
     }
 
     getPositionOfCursor() {
@@ -109,4 +115,34 @@ class Cell {
         this.inputOnKeydown( input, td);
         return input;
     }
+    getFont(){
+        return this._font
+    }
+    setFont(font){
+        this.clearFont();
+        if(this._input){
+            this._input.classList.add(font);
+        }
+        this._td.classList.add(font);
+        this._font = font;
+    }
+    clearFont(){
+        let fonts = new Font().getItems();
+        for(let i = 0; i<this._td.classList.length;i++){
+            for(let k =0;k<fonts.length;k++){
+                if(this._td.classList[i]===fonts[k]){
+                   this._td.classList.remove(this._td.classList[i]);
+                    if(this._input){
+                        this._input.classList.remove(this._td.classList[i]);
+                    }
+
+                }
+            }
+        }
+        //todo get all classes from td
+        //todo get all fonts from font
+        //todo find in classes from td by font classes and  remove
+        //todo same to input
+    }
+
 }

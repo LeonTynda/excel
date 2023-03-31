@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
+.Arial{
+
+}
 </style>
 <head>
     <meta charset="UTF-8">
@@ -9,29 +12,54 @@
     <script src="src/js/List.js"></script>
     <script src="src/js/ListContainer.js"></script>
     <script src="src/js/Cell.js"></script>
+    <script src="src/js/menu/Menu.js"></script>
+    <script src="src/js/menu/commands/MenuCommand.js"></script>
+    <script src="src/js/menu/commands/MenuSubCommand.js"></script>
+    <script src="src/js/menu/commands/file/FileMenu.js"></script>
+    <script src="src/js/menu/commands/edit/EditMenu.js"></script>
+    <script src="src/js/menu/commands/window/WindowMenu.js"></script>
+    <script src="src/js/menu/commands/window/WindowReload.js"></script>
+    <script src="src/js/menu/commands/window/WindowClose.js"></script>
+    <script src="src/js/Font.js"></script>
+    <script src="src/js/menu/commands/edit/EditCopyCommand.js"></script>
+    <script src="src/js/menu/commands/file/FileAddCommand.js"></script>
+    <script src="src/js/menu/commands/edit/EditPasteCommand.js"></script>
+    <script src="src/js/menu/commands/file/FileSaveCommand.js"></script>
     <link href="src/css/main.css" rel="stylesheet" type="text/css">
     <link href="src/css/input.css" rel="stylesheet" type="text/css">
     <link href="src/css/table.css" rel="stylesheet" type="text/css">
     <link href="src/css/tooltip.css" rel="stylesheet" type="text/css">
+    <link href="src/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="src/css/fonts/fonts.css" rel="stylesheet" type="text/css">
+
     <script>
-        let excel = new Excel(3, 6, 6);
+        let excel = new Excel(4, 6, 6);
+
         let listContainer = excel.getListContainer();
-        listContainer.add(4, 4);
-        listContainer.add(30, 30);
+        listContainer.add(4, 4,'leo');
+        listContainer.add(30, 30,'gemor');
         let list = listContainer.getList(1);
         let cell = list.getCell(1, 2);
         console.log(excel);
         console.log(cell);
         window.addEventListener('DOMContentLoaded', () => {
+            alert('Привет Леонид, ты красавчик!')
             let k = excel.render('show');
+
 
             console.log(k);
         });
     </script>
 </head>
 <body style="text-align:left;">
-<input type="text" id="X">
-<input type="text" id="Y">
+<input type="text" id="X" >
+<input type="text" id="Y"  >
+<div id="menu">
+</div>
+<div id = "instruments">
+
+</div>
+
 <div class="tooltip">
     <div id='show'>
     </div>
@@ -46,6 +74,8 @@
 
 </div>
 <button class="e" id='11111' onclick="excel.showMaster()">ПОСМОТРЕТЬ ФОТО ГУРУ ЖИТОМИРСКОГО</button>
-<img src="src/images/vitalya.jpg" id="vitalya" style="display: none">
+<img src="./src/images/vitalya.jpg" id="vitalya" style="display: none">
+
+
 </body>
 </html>
