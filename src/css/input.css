@@ -1,4 +1,4 @@
-input {
+.input {
     font-weight: normal;
     box-sizing: border-box;
     height: 100%;
@@ -6,8 +6,7 @@ input {
     padding: 5px;
     min-width: max-content;
     cursor: text;
-
-
+    border-width:1px;
 }
 .active {
     background-color: rgb(25, 114, 229, 0.1) ;
@@ -20,5 +19,4 @@ input {
     border-style: solid;
     border-width: 3px 3px 3px 3px;
     padding: 3px;
-
 }
