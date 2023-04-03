@@ -5,8 +5,7 @@ class Cell {
         this._input = undefined;
         this._list = list;
         this._td = undefined;
-        this._masxy = [];
-         this._font = undefined
+        this._font = undefined
     }
 
     setValue(value) {
@@ -50,7 +49,6 @@ class Cell {
         if (this._input !== undefined) {
             return;
         }
-        this.getPositionOfCursor();
         td.innerHTML = '';
         let factInput = this.createInput(td);
         factInput.classList.add(this._font);
@@ -73,26 +71,11 @@ class Cell {
         }
         this._input = undefined;
     }
-
-    cursorPositions(e) {
-        this._masxy = [];
-        let X = document.getElementById('X');
-        let Y = document.getElementById('Y');
-        X.style.display ='block'
-        Y.style.display ='block'
-        this._masxy.push(X.value, Y.value);
-
-    }
-
-    getPositionOfCursor() {
-        addEventListener('mousemove', this.cursorPositions, false);
-    }
-
     inputOnClick(input) {
         input.addEventListener("dblclick", (e) => {
-            input.setSelectionRange(this._masxy[0], this._masxy[1]);
             input.focus();
-            this.cursorPositions(e);
+            input.setSelectionRange(input.value.length,input.value.length);
+
         });
     }
 
@@ -102,6 +85,7 @@ class Cell {
                 this._value = input.value;
                 this.removeInput();
                 td.classList.remove('verticalStyle');
+                console.log(td.height,1000)
             }
         });
     }
@@ -135,14 +119,9 @@ class Cell {
                     if(this._input){
                         this._input.classList.remove(this._td.classList[i]);
                     }
-
                 }
             }
         }
-        //todo get all classes from td
-        //todo get all fonts from font
-        //todo find in classes from td by font classes and  remove
-        //todo same to input
     }
 
 }
