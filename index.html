@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-.Arial{
-
-}
 </style>
 <head>
     <meta charset="UTF-8">
@@ -31,10 +28,8 @@
     <link href="src/css/tooltip.css" rel="stylesheet" type="text/css">
     <link href="src/css/menu.css" rel="stylesheet" type="text/css">
     <link href="src/css/fonts/fonts.css" rel="stylesheet" type="text/css">
-
     <script>
         let excel = new Excel(4, 6, 6);
-
         let listContainer = excel.getListContainer();
         listContainer.add(4, 4,'leo');
         listContainer.add(30, 30,'gemor');
@@ -43,10 +38,8 @@
         console.log(excel);
         console.log(cell);
         window.addEventListener('DOMContentLoaded', () => {
-            alert('Привет Леонид, ты красавчик!')
+
             let k = excel.render('show');
-
-
             console.log(k);
         });
     </script>

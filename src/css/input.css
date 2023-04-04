@@ -5,8 +5,10 @@
     width: 100%;
     padding: 5px;
     min-width: max-content;
+    min-height: max-content;
     cursor: text;
     border-width:1px;
+
 }
 .active {
     background-color: rgb(25, 114, 229, 0.1) ;

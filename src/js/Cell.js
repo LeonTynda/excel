@@ -75,7 +75,6 @@ class Cell {
         input.addEventListener("dblclick", (e) => {
             input.focus();
             input.setSelectionRange(input.value.length,input.value.length);
-
         });
     }
 

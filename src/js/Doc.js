@@ -8,11 +8,6 @@ class Excel {
         }
         document.addEventListener('fontSelected',(event)=>{
             console.log(event.detail.font,666666)
-            //todo:get active list s listconteiner
-            //todo:get active cell from active list
-            //todo: set font for active in td
-
-
             let list = this.getListContainer().getActiveList();
             let cell = list.getActiveCell();
             cell.setFont(event.detail.font)
