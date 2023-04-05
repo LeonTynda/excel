@@ -9,10 +9,8 @@ class List {
         this._name = name;
         this._activeCell = undefined;
         document.addEventListener('cellSelected',(event)=>{
-            console.log(44444444,this._name)
             if(event.detail.cell._list._name === this._name){
                 this._activeCell = event.detail.cell;
-                console.log(event.detail.cell,99999,this,this._activeCell)
             }
         });
 
@@ -37,12 +35,14 @@ class List {
         for (let i = 0; i < this._rows; i++) {
             let tdList = [];
             let tr = document.createElement('tr');
+
             if (i === 0) {
                 this.renderColumns(table);
             }
             this.renderLeftColumns(i, tr);
             for (let j = 0; j < this._cals; j++) {
                 let td = this._cells[i][j].render();
+
                 td.classList.add(new Cell().getFont())
                 td.innerHTML =''
                 td.addEventListener('click', () => {
@@ -53,12 +53,15 @@ class List {
                     //this.getLetterNumberIndex(i, j);
                 });
                 tr.appendChild(td);
+                tr.addEventListener('click', () => {
+                    this.setWriteSizeOfInput(tr)
+                })
                 tdList.push(td);
             }
             table.appendChild(tr);
             this._tdCells.push(tdList);
-
         }
+
         return table;
     }
 
@@ -87,7 +90,6 @@ class List {
                         if (j === k) {
                             this._tdCells[i][k].classList.add('active');
                             this.setColorToColumn(td);
-
                         }
                     }
                 }
@@ -178,5 +180,23 @@ class List {
     getActiveCell(){
         return this._activeCell;
     }
+    setWriteSizeOfInput(tr){
+        if(tr.getAttribute('data-observe')){
+            return;
+        }
 
+        let observer = new ResizeObserver((entries)=>{
+
+            let height = Math.ceil(entries[0].contentRect.height);
+            observer.disconnect();
+            for(let i = 0; i<tr.children.length;i++){
+                tr.children[i].style.height = `${height}px`;
+            }
+            tr.setAttribute('data-observe',undefined);
+            console.log(tr.children.id,tr.children)
+        })
+        observer.observe(tr);
+        tr.setAttribute('data-observe',1);
+
+    }
 }

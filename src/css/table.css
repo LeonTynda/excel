@@ -3,16 +3,12 @@ table {
     border: 2px solid rgb(200,200,200);
     letter-spacing: 1px;
     font-size: 0.8rem;
-    width: max-content;
-
-
+    width: min-content;
 }
 
 td, th {
     border: 1px solid rgb(190,190,190);
-    padding: 10px 30px;
-
-
+    min-width: 100px ;
 }
 
 th {
@@ -23,6 +19,7 @@ th {
 td {
     text-align: center;
     font-weight: bold;
+
 }
 
 tr:nth-child(even) td {
@@ -41,4 +38,7 @@ caption {
 }
 .colorOfCell {
     background-color: rgb(25, 114, 229);
+}
+tr{
+    height: 37px;
 }
