@@ -17,7 +17,7 @@ class List {
         for (let i = 0; i < paramX; i++) {
             let list = [];
             for (let j = 0; j < paramY; j++) {
-                let cell = new Cell(this);
+                let cell = new Cell(this,i,j);
                 //cell.setValue(`${i},${j}`)
                 list.push(cell);
             }
@@ -35,17 +35,17 @@ class List {
         for (let i = 0; i < this._rows; i++) {
             let tdList = [];
             let tr = document.createElement('tr');
-
             if (i === 0) {
                 this.renderColumns(table);
             }
             this.renderLeftColumns(i, tr);
             for (let j = 0; j < this._cals; j++) {
                 let td = this._cells[i][j].render();
-
-                td.classList.add(new Cell().getFont())
-                td.innerHTML =''
+                td.innerHTML ='';
                 td.addEventListener('click', () => {
+
+                    console.log(i,888888888,`${this._cells[i][j].getInput().getBoundingClientRect().width}px`,333,`${td.getBoundingClientRect().width}px`)
+
                     this.clearDataCells();
                     this.clearHeaderColumns('verticalStyle');
                     td.classList.add('verticalStyle');
@@ -54,14 +54,13 @@ class List {
                 });
                 tr.appendChild(td);
                 tr.addEventListener('click', () => {
-                    this.setWriteSizeOfInput(tr)
+                    this.watchTrResize(tr)
                 })
                 tdList.push(td);
             }
             table.appendChild(tr);
             this._tdCells.push(tdList);
         }
-
         return table;
     }
 
@@ -93,7 +92,6 @@ class List {
                         }
                     }
                 }
-
             });
             td.innerHTML = this.getLetterIndex(j);
             trColumn.appendChild(td);
@@ -104,7 +102,8 @@ class List {
     renderLeftColumns(i, tr) {
         let td = document.createElement('td');
         td.innerHTML = `${i + 1}`;
-        tr.appendChild(td)
+       //////////// td.style.width = 30+'px';
+        tr.appendChild(td);
     }
 
     getLetterIndex(index) {
@@ -180,23 +179,21 @@ class List {
     getActiveCell(){
         return this._activeCell;
     }
-    setWriteSizeOfInput(tr){
+    watchTrResize(tr){
         if(tr.getAttribute('data-observe')){
             return;
         }
-
         let observer = new ResizeObserver((entries)=>{
-
             let height = Math.ceil(entries[0].contentRect.height);
             observer.disconnect();
             for(let i = 0; i<tr.children.length;i++){
                 tr.children[i].style.height = `${height}px`;
             }
             tr.setAttribute('data-observe',undefined);
-            console.log(tr.children.id,tr.children)
+            //console.log(tr.children.id,tr.children)
         })
         observer.observe(tr);
         tr.setAttribute('data-observe',1);
-
     }
+
 }

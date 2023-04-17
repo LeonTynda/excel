@@ -1,5 +1,6 @@
 .input {
-    font-weight: normal;
+    //position: static;
+    font-weight: initial;
     box-sizing: border-box;
     height: 100%;
     width: 100%;
@@ -8,8 +9,8 @@
     min-height: max-content;
     cursor: text;
     border-width:1px;
-
 }
+
 .active {
     background-color: rgb(25, 114, 229, 0.1) ;
     border-right: 3px solid rgb(25, 114, 229);;

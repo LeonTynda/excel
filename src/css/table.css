@@ -3,33 +3,36 @@ table {
     border: 2px solid rgb(200,200,200);
     letter-spacing: 1px;
     font-size: 0.8rem;
-    width: min-content;
+    width: max-content;
 }
 
 td, th {
     border: 1px solid rgb(190,190,190);
-    min-width: 100px ;
+    min-width: 181px ;
+    max-width: 181px;
+    width: 181px;
 }
 
 th {
     background-color: rgb(235,235,235);
     word-break: break-all;
+    width: 181px;
 }
 
 td {
     text-align: center;
     font-weight: bold;
-
+    width: 181px;
 }
 
 tr:nth-child(even) td {
 
 //background-color: rgb(250,250,250);
-
+    width: 181px;
 }
 
 tr:nth-child(odd) td {
-
+    width: 181px;
 //background-color: rgb(245,245,245);
 }
 
